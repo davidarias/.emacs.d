@@ -36,6 +36,9 @@
 
 (add-hook 'focus-out-hook 'save-all)
 
+(require 'ido)
+(ido-mode t)
+
 ;; package manager
 (require 'package)
 
