@@ -86,5 +86,8 @@
 	    ;; Default indentation is usually 2 spaces, changing to 4.
 	    (set (make-local-variable 'sgml-basic-offset) 4)))
 
+;; globals for js2-mode
+(setq js2-global-externs (list "window" "define"))
+
 ;; Key bindings
 (global-set-key (kbd "C-x TAB") 'indent-region)
