@@ -78,3 +78,13 @@
 (require 'auto-complete-config)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
 (ac-config-default)
+
+
+;; use 4 spaces in html mode
+(add-hook 'html-mode-hook
+	  (lambda ()
+	    ;; Default indentation is usually 2 spaces, changing to 4.
+	    (set (make-local-variable 'sgml-basic-offset) 4)))
+
+;; Key bindings
+(global-set-key (kbd "C-x TAB") 'indent-region)
