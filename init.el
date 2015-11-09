@@ -12,6 +12,9 @@
 ;; no anoying backup files
 (setq make-backup-files nil)
 
+;; dont wrap long line
+(set-default 'truncate-lines t)
+
 ;;automatic autosaves anoying #files# in tmp
 (setq backup-directory-alist
       `((".*" . ,temporary-file-directory)))
