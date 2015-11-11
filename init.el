@@ -39,14 +39,12 @@
 
 (add-hook 'focus-out-hook 'save-all)
 
-(require 'ido)
-(ido-mode t)
-
 ;; package manager
 (require 'package)
 
 ;; set the list of packaes to install
-(setq package-list '(ac-js2 js2-mode auto-complete yasnippet))
+;; py-autopep8 requires the autopep8 tool (pip install autopep8 )
+(setq package-list '(ac-js2 js2-mode auto-complete yasnippet python-mode py-autopep8))
 
 ;; packages repositories
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
@@ -62,13 +60,14 @@
   (unless (package-installed-p package)
     (package-install package)))
 
+
+(require 'ido)
+(ido-mode t)
+
 ;; set color themes ( requires emacs-goodies package)
 (require 'color-theme)
 (color-theme-initialize)
 (color-theme-charcoal-black)
-
-;; use js2 mode in js files
-(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 
 ;;; yasnippet
 (require 'yasnippet)
@@ -79,6 +78,11 @@
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
 (ac-config-default)
 
+;; use js2 mode in js files
+(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+
+;; globals for js2-mode
+(setq js2-global-externs (list "window" "define"))
 
 ;; use 4 spaces in html mode
 (add-hook 'html-mode-hook
@@ -86,8 +90,14 @@
 	    ;; Default indentation is usually 2 spaces, changing to 4.
 	    (set (make-local-variable 'sgml-basic-offset) 4)))
 
-;; globals for js2-mode
-(setq js2-global-externs (list "window" "define"))
+;; use python-mode
+(autoload 'python-mode "python-mode" "Python Mode." t)
+(add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
+(add-to-list 'interpreter-mode-alist '("python" . python-mode))
+
+;; autopep8 on save
+(add-hook 'python-mode-hook 'py-autopep8-enable-on-save)
+
 
 ;; Key bindings
 (global-set-key (kbd "C-x TAB") 'indent-region)
