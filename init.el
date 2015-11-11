@@ -44,7 +44,7 @@
 
 ;; set the list of packaes to install
 ;; py-autopep8 requires the autopep8 tool (pip install autopep8 )
-(setq package-list '(ac-js2 js2-mode auto-complete yasnippet python-mode py-autopep8))
+(setq package-list '(autopair ac-js2 js2-mode auto-complete yasnippet python-mode py-autopep8))
 
 ;; packages repositories
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
@@ -60,6 +60,9 @@
   (unless (package-installed-p package)
     (package-install package)))
 
+
+(require 'autopair)
+(autopair-global-mode) ;; to enable in all buffers
 
 (require 'ido)
 (ido-mode t)
