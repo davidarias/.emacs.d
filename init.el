@@ -9,6 +9,10 @@
 ;; how line numbers
 (global-linum-mode t)
 
+;; hightlight matching parens
+(setq show-paren-delay 0) ;; remove anoying delay
+(show-paren-mode 1)
+
 ;; no anoying backup files
 (setq make-backup-files nil)
 
@@ -60,7 +64,6 @@
   (unless (package-installed-p package)
     (package-install package)))
 
-
 (require 'autopair)
 (autopair-global-mode) ;; to enable in all buffers
 
@@ -80,6 +83,8 @@
 (require 'auto-complete-config)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
 (ac-config-default)
+;; avoid linum weird behaviour
+(ac-linum-workaround)
 
 ;; use js2 mode in js files
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
