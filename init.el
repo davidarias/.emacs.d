@@ -19,8 +19,10 @@
 		      auto-complete
 		      yasnippet
 		      python-mode
+                      pyvenv
 		      py-autopep8
-		      clojure-mode))
+		      clojure-mode
+                      smex))
 
 ; install the missing packages
 (dolist (package my-packages)
@@ -69,6 +71,8 @@
 (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
 (add-to-list 'interpreter-mode-alist '("python" . python-mode))
 
+(setq py-shell-name "ipython")
+
 ;; autopep8 on save
 (add-hook 'python-mode-hook 'py-autopep8-enable-on-save)
 
@@ -113,3 +117,10 @@
 
 ;; Key bindings
 (global-set-key (kbd "C-x TAB") 'indent-region)
+
+(require 'smex)
+;; key bindings for smex
+(global-set-key (kbd "M-x") 'smex)
+(global-set-key (kbd "M-X") 'smex-major-mode-commands)
+;; This is your old M-x.
+(global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
