@@ -22,12 +22,15 @@
                       pyvenv
 		      py-autopep8
 		      clojure-mode
-                      smex))
+                      smex
+                      lua-mode
+                      atom-dark-theme))
 
 ; install the missing packages
 (dolist (package my-packages)
   (unless (package-installed-p package)
     (package-install package)))
+
 
 (require 'better-defaults)
 
@@ -39,9 +42,13 @@
 ;; (ido-mode t)
 
 ;; set color themes ( requires emacs-goodies package)
-(require 'color-theme)
-(color-theme-initialize)
-(color-theme-charcoal-black)
+;; (require 'color-theme)
+;; (color-theme-initialize)
+;; (color-theme-charcoal-black)
+
+;(require 'lavender-theme)
+
+(load-theme 'atom-dark t)
 
 ;;; yasnippet
 (require 'yasnippet)
@@ -71,7 +78,7 @@
 (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
 (add-to-list 'interpreter-mode-alist '("python" . python-mode))
 
-(setq py-shell-name "ipython")
+;; (setq py-shell-name "ipython")
 
 ;; autopep8 on save
 (add-hook 'python-mode-hook 'py-autopep8-enable-on-save)
