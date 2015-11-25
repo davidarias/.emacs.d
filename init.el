@@ -120,6 +120,9 @@
   (interactive)
   (save-some-buffers t))
 
+;; autoreload buffers if the file is modified by an external program (i.e. git)
+(global-auto-revert-mode t)
+
 (add-hook 'focus-out-hook 'save-all)
 
 ;; Key bindings
