@@ -24,7 +24,8 @@
 		      clojure-mode
                       smex
                       lua-mode
-                      atom-dark-theme))
+                      atom-dark-theme
+                      base16-theme))
 
 ; install the missing packages
 (dolist (package my-packages)
@@ -37,6 +38,9 @@
 (require 'autopair)
 (autopair-global-mode) ;; to enable in all buffers
 
+;; show line numbers
+(global-linum-mode t)
+
 ;; activated in better defaults
 ;; (require 'ido)
 ;; (ido-mode t)
@@ -46,9 +50,23 @@
 ;; (color-theme-initialize)
 ;; (color-theme-charcoal-black)
 
-;(require 'lavender-theme)
+(load-theme 'base16-ashes-dark t)
 
-(load-theme 'atom-dark t)
+;; set fringes to background color
+(set-face-attribute 'fringe nil
+                    :foreground (face-foreground 'default)
+                    :background (face-background 'default))
+
+;; set linum to background color
+(set-face-attribute 'linum nil
+                    ;; :foreground (face-foreground 'default)
+                    :background (face-background 'default))
+
+;; set vertical separator to background ( kind of hide )
+(set-face-attribute 'vertical-border
+                    nil
+                    :foreground (face-background 'default))
+
 
 ;;; yasnippet
 (require 'yasnippet)
@@ -86,8 +104,7 @@
 ;; No splash screen
 (setq inhibit-startup-message t)
 
-;; how line numbers
-(global-linum-mode t)
+
 
 ;; hightlight matching parens
 (setq show-paren-delay 0) ;; remove anoying delay
