@@ -35,6 +35,9 @@
 
 (require 'better-defaults)
 
+;; no anoying visible bell
+(setq visible-bell nil)
+
 (require 'autopair)
 (autopair-global-mode) ;; to enable in all buffers
 
