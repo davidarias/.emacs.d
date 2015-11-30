@@ -17,7 +17,6 @@
 		      ac-js2
 		      js2-mode
 		      auto-complete
-		      yasnippet
 		      python-mode
                       pyvenv
 		      py-autopep8
@@ -70,10 +69,6 @@
                     nil
                     :foreground (face-background 'default))
 
-
-;;; yasnippet
-(require 'yasnippet)
-(yas-global-mode 1)
 
 ;;; auto complete
 (require 'auto-complete-config)
