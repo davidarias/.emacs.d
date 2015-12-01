@@ -42,7 +42,7 @@
 
 ;; show line numbers
 (global-linum-mode t)
-
+(add-hook 'term-mode-hook (lambda () (linum-mode 0)))
 ;; activated in better defaults
 ;; (require 'ido)
 ;; (ido-mode t)
