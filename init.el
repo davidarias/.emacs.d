@@ -34,6 +34,9 @@
 
 (require 'better-defaults)
 
+;; some anarchist developers use tabs instead of spaces
+(setq-default tab-width 4)
+
 ;; no anoying visible bell
 (setq visible-bell nil)
 
