@@ -80,11 +80,15 @@
 ;; avoid linum weird behaviour
 (ac-linum-workaround)
 
+;; use markdown mode
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+
+
 ;; use js2 mode in js files
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 
 ;; globals for js2-mode
-(setq js2-global-externs (list "window" "define"))
+(setq js2-global-externs (list "window" "define" "require" "module" "exports"))
 
 ;; use 4 spaces in html mode
 (add-hook 'html-mode-hook
