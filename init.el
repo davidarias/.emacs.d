@@ -22,19 +22,21 @@
 		      js2-mode
 		      auto-complete
 		      python-mode
-                      pyvenv
+              pyvenv
 		      py-autopep8
 		      clojure-mode
-                      smex
-                      lua-mode
-                      atom-dark-theme
-                      base16-theme))
+              smex
+              lua-mode
+              atom-dark-theme
+              base16-theme
+              ido-ubiquitous
+              flx-ido
+              ido-grid-mode))
 
 ; install the missing packages
 (dolist (package my-packages)
   (unless (package-installed-p package)
     (package-install package)))
-
 
 (require 'better-defaults)
 
@@ -56,6 +58,11 @@
 ;; activated in better defaults
 ;; (require 'ido)
 ;; (ido-mode t)
+
+;; enable ido plugins
+(ido-everywhere 1)
+(ido-grid-mode 1)
+(flx-ido-mode 1)
 
 ;; set color themes ( requires emacs-goodies package)
 ;; (require 'color-theme)
