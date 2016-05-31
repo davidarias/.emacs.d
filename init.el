@@ -162,6 +162,10 @@
 (add-hook 'focus-out-hook 'save-all)
 
 ;; Key bindings
+
+;; duplicate line with C-c C-d
+(global-set-key "\C-c\C-d" "\C-a\C- \C-n\M-w\C-y")
+
 (global-set-key (kbd "C-x TAB") 'indent-region)
 
 (require 'smex)
