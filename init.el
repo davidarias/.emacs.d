@@ -17,21 +17,21 @@
 ;; set the list of packaes to install
 ;; py-autopep8 requires the autopep8 tool (pip install autopep8 )
 (defvar my-packages '(better-defaults
-		      autopair
-		      ac-js2
-		      js2-mode
-		      auto-complete
-		      python-mode
-              pyvenv
-		      py-autopep8
-		      clojure-mode
-              smex
-              lua-mode
-              atom-dark-theme
-              base16-theme
-              ido-ubiquitous
-              flx-ido
-              ido-grid-mode))
+                      autopair
+                      ac-js2
+                      js2-mode
+                      auto-complete
+                      python-mode
+                      pyvenv
+                      py-autopep8
+                      clojure-mode
+                      smex
+                      lua-mode
+                      atom-dark-theme
+                      base16-theme
+                      ido-ubiquitous
+                      flx-ido
+                      ido-grid-mode))
 
 ; install the missing packages
 (dolist (package my-packages)
