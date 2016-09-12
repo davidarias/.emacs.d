@@ -63,13 +63,15 @@
 (ido-everywhere 1)
 (ido-grid-mode 1)
 (flx-ido-mode 1)
+(setq ido-auto-merge-work-directories-length -1)
+
 
 ;; set color themes ( requires emacs-goodies package)
 ;; (require 'color-theme)
 ;; (color-theme-initialize)
 ;; (color-theme-charcoal-black)
 
-(load-theme 'base16-ashes-dark t)
+(load-theme 'base16-default-dark t)
 
 ;; set fringes to background color
 (set-face-attribute 'fringe nil
