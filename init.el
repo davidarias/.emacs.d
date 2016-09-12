@@ -31,7 +31,8 @@
                       base16-theme
                       ido-ubiquitous
                       flx-ido
-                      ido-grid-mode))
+                      ido-grid-mode
+                      jedi))
 
 ; install the missing packages
 (dolist (package my-packages)
@@ -116,6 +117,8 @@
 (autoload 'python-mode "python-mode" "Python Mode." t)
 (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
 (add-to-list 'interpreter-mode-alist '("python" . python-mode))
+
+(add-hook 'python-mode-hook 'jedi:setup)
 
 ;; (setq py-shell-name "ipython")
 
