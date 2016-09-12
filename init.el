@@ -163,8 +163,17 @@
 
 ;; Key bindings
 
-;; duplicate line with C-c C-d
-(global-set-key "\C-c\C-d" "\C-a\C- \C-n\M-w\C-y")
+(defun duplicate-line()
+  (interactive)
+  (move-beginning-of-line 1)
+  (kill-line)
+  (yank)
+  (open-line 1)
+  (next-line 1)
+  (yank)
+)
+(global-set-key (kbd "C-S-d") 'duplicate-line)
+
 
 (global-set-key (kbd "C-x TAB") 'indent-region)
 
