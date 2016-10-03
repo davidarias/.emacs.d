@@ -33,7 +33,8 @@
                       flx-ido
                       ido-grid-mode
                       jedi
-                      web-mode))
+                      web-mode
+                      doom-themes))
 
 ; install the missing packages
 (dolist (package my-packages)
@@ -73,7 +74,7 @@
 ;; (color-theme-initialize)
 ;; (color-theme-charcoal-black)
 
-(load-theme 'base16-default-dark t)
+(load-theme 'doom-one t)
 
 ;; set fringes to background color
 (set-face-attribute 'fringe nil
@@ -89,6 +90,12 @@
 (set-face-attribute 'vertical-border
                     nil
                     :foreground (face-background 'default))
+
+;; ido theme tweaks
+(custom-set-faces
+ '(ido-subdir ((t (:foreground "#999")))) ;; Face used by ido for highlighting subdirs in the alternatives.
+ '(ido-first-match ((t (:foreground "#fff")))) ;; Face used by ido for highlighting first match.
+ '(ido-only-match ((t (:foreground "#fff"))))) ;; Face used by ido for highlighting only match.
 
 
 ;;; auto complete
