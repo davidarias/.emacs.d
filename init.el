@@ -10,7 +10,7 @@
 ;;(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
 (package-initialize)
 
-; fetch the list of packages available 
+; fetch the list of packages available
 (unless package-archive-contents
   (package-refresh-contents))
 
@@ -147,7 +147,7 @@
 ;; (setq py-shell-name "ipython")
 
 ;; autopep8 on save
-(add-hook 'python-mode-hook 'py-autopep8-enable-on-save)
+;; (add-hook 'python-mode-hook 'py-autopep8-enable-on-save)
 
 ;; No splash screen
 (setq inhibit-startup-message t)
@@ -189,6 +189,9 @@
 (global-auto-revert-mode t)
 
 (add-hook 'focus-out-hook 'save-all)
+
+;; delete trailing space before save
+(add-to-list 'write-file-functions 'delete-trailing-whitespace)
 
 ;; Key bindings
 
