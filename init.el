@@ -35,7 +35,8 @@
                       jedi
                       web-mode
                       doom-themes
-                      neotree))
+                      neotree
+                      projectile))
 
 ; install the missing packages
 (dolist (package my-packages)
@@ -75,6 +76,9 @@
 (global-set-key [f8] 'neotree-toggle)
 (setq neo-theme 'nerd)
 
+
+;; enable projectile globaly
+(projectile-global-mode)
 
 ;; set color themes ( requires emacs-goodies package)
 ;; (require 'color-theme)
