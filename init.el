@@ -34,7 +34,8 @@
                       ido-grid-mode
                       jedi
                       web-mode
-                      doom-themes))
+                      doom-themes
+                      neotree))
 
 ; install the missing packages
 (dolist (package my-packages)
@@ -67,6 +68,12 @@
 (ido-grid-mode 1)
 (flx-ido-mode 1)
 (setq ido-auto-merge-work-directories-length -1)
+
+
+;; neo tree confog
+(require 'neotree)
+(global-set-key [f8] 'neotree-toggle)
+(setq neo-theme 'nerd)
 
 
 ;; set color themes ( requires emacs-goodies package)
