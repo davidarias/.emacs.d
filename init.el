@@ -73,12 +73,29 @@
 
 ;; neo tree confog
 (require 'neotree)
-(global-set-key [f8] 'neotree-toggle)
+;; (global-set-key [f8] 'neotree-toggle)
 (setq neo-theme 'nerd)
 
 
 ;; enable projectile globaly
 (projectile-global-mode)
+
+;; open neo tree at project root
+(defun neotree-project-dir ()
+  "Open NeoTree using the git root."
+  (interactive)
+  (let ((project-dir (projectile-project-root))
+        (file-name (buffer-file-name)))
+    (if project-dir
+        (if (neo-global--window-exists-p)
+            (neotree-hide)
+          (progn
+            (neotree-show)
+            (neotree-dir project-dir)
+            (neotree-find file-name)))
+      (message "Could not find git project root."))))
+
+(global-set-key [f8] 'neotree-project-dir)
 
 ;; set color themes ( requires emacs-goodies package)
 ;; (require 'color-theme)
