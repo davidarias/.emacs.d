@@ -172,6 +172,13 @@
 
 (add-hook 'python-mode-hook 'jedi:setup)
 
+;; exclude unwanted words in autocomplete (only use jedi)
+(add-hook 'python-mode-hook
+          (lambda ()
+            (delq 'ac-source-dictionary ac-sources)
+            (delq 'ac-source-abbrev ac-sources)
+            (delq 'ac-source-words-in-same-mode-buffers ac-sources)))
+
 ;; (setq py-shell-name "ipython")
 
 ;; autopep8 on save
