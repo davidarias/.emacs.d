@@ -45,6 +45,9 @@
 
 (require 'better-defaults)
 
+;; overwrite selected text
+(delete-selection-mode 1)
+
 ;; some anarchist developers use tabs instead of spaces
 (setq-default tab-width 4)
 
