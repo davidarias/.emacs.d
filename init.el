@@ -83,20 +83,20 @@
 ;; enable projectile globaly
 (projectile-global-mode)
 
-;; open neo tree at project root
 (defun neotree-project-dir ()
-  "Open NeoTree using the git root."
+  "Open NeoTree using the git root if in project"
   (interactive)
-  (let ((project-dir (projectile-project-root))
-        (file-name (buffer-file-name)))
-    (if project-dir
-        (if (neo-global--window-exists-p)
-            (neotree-hide)
-          (progn
-            (neotree-show)
-            (neotree-dir project-dir)
-            (neotree-find file-name)))
-      (message "Could not find git project root."))))
+  (if (neo-global--window-exists-p)
+      (neotree-hide)
+    (if (projectile-project-p)
+        (let ((project-dir (projectile-project-root))
+              (file-name (buffer-file-name)))
+          (if project-dir
+              (progn
+                (neotree-dir project-dir)
+                (neotree-find file-name))
+            (message "Could not find git project root.")))
+      (neotree-toggle))))
 
 (global-set-key [f8] 'neotree-project-dir)
 
