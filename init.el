@@ -36,12 +36,16 @@
                       web-mode
                       doom-themes
                       neotree
-                      projectile))
+                      projectile
+                      flycheck))
 
 ; install the missing packages
 (dolist (package my-packages)
   (unless (package-installed-p package)
     (package-install package)))
+
+;; enable flycheck
+(global-flycheck-mode)
 
 (require 'better-defaults)
 
