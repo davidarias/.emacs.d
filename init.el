@@ -57,6 +57,9 @@
 
 (require 'better-defaults)
 
+;; move between windows using shift + arrows
+(windmove-default-keybindings)
+
 ;; overwrite selected text
 (delete-selection-mode 1)
 
