@@ -38,7 +38,8 @@
                       neotree
                       projectile
                       flycheck
-                      dashboard))
+                      dashboard
+                      highlight-indent-guides))
 
 ; install the missing packages
 (dolist (package my-packages)
@@ -56,6 +57,10 @@
 
 
 (require 'better-defaults)
+
+;; indent-guides
+(add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
+(setq highlight-indent-guides-method 'character)
 
 ;; move between windows using shift + arrows
 (windmove-default-keybindings)
