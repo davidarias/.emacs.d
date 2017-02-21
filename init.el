@@ -37,15 +37,23 @@
                       doom-themes
                       neotree
                       projectile
-                      flycheck))
+                      flycheck
+                      dashboard))
 
 ; install the missing packages
 (dolist (package my-packages)
   (unless (package-installed-p package)
     (package-install package)))
 
-;; enable flycheck
-(global-flycheck-mode)
+
+(require 'dashboard)
+(dashboard-setup-startup-hook)
+
+(setq dashboard-banner-logo-title "Welcome DarthCoder")
+(setq dashboard-items '((recents  . 5)
+                        (bookmarks . 5)
+                        (projects . 5)))
+
 
 (require 'better-defaults)
 
@@ -132,6 +140,8 @@
  '(ido-first-match ((t (:foreground "#fff")))) ;; Face used by ido for highlighting first match.
  '(ido-only-match ((t (:foreground "#fff"))))) ;; Face used by ido for highlighting only match.
 
+;; enable flycheck
+(global-flycheck-mode)
 
 ;;; auto complete
 (require 'auto-complete-config)
