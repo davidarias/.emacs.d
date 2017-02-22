@@ -1,4 +1,8 @@
-;; package manager
+;;; darthcoder-emacs-config --- My Emacs Config
+;;; Commentary:
+;;; Header to avoid flycheck warnings
+;;; Code:
+
 (require 'package)
 
 ;; packages repositories
@@ -39,18 +43,22 @@
                       projectile
                       flycheck
                       dashboard
-                      highlight-indent-guides))
+                      highlight-indent-guides
+                      key-seq))
 
 ; install the missing packages
 (dolist (package my-packages)
   (unless (package-installed-p package)
     (package-install package)))
 
+;; init maximized
+(custom-set-variables
+ '(initial-frame-alist (quote ((fullscreen . maximized)))))
 
 (require 'dashboard)
 (dashboard-setup-startup-hook)
 
-(setq dashboard-banner-logo-title "Welcome DarthCoder")
+(setq dashboard-banner-logo-title "Use the source, Luke")
 (setq dashboard-items '((recents  . 5)
                         (bookmarks . 5)
                         (projects . 5)))
@@ -62,8 +70,8 @@
 (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
 (setq highlight-indent-guides-method 'character)
 
-;; move between windows using shift + arrows
-(windmove-default-keybindings)
+;; move between windows using meta + arrows
+(windmove-default-keybindings 'meta)
 
 ;; overwrite selected text
 (delete-selection-mode 1)
@@ -261,13 +269,12 @@
   (kill-line)
   (yank)
   (open-line 1)
-  (next-line 1)
-  (yank)
-)
+  (forward-line 1)
+  (yank))
+
 (global-set-key (kbd "C-S-d") 'duplicate-line)
 
 
-(global-set-key (kbd "C-x TAB") 'indent-region)
 
 (require 'smex)
 ;; key bindings for smex
@@ -283,3 +290,16 @@
          (progn
            (window-configuration-to-register '_)
            (delete-other-windows))))
+
+;; key-seq bindings
+;; key-seq provides a way to map pairs of sequentially
+;; but quickly pressed keys to commands
+(key-chord-mode 1)
+
+;; examples:
+;; (key-seq-define-global "qd" 'dired)
+;; (key-seq-define text-mode-map "qf" 'flyspell-buffer)
+
+(key-seq-define-global "ff" 'find-file)
+(key-seq-define-global "pf" 'projectile-find-file)
+(key-seq-define-global "pp" 'projectile-switch-project)
