@@ -22,8 +22,9 @@
 ;; py-autopep8 requires the autopep8 tool (pip install autopep8 )
 (defvar my-packages '(better-defaults
                       autopair
-                      ac-js2
                       js2-mode
+                      tern
+                      tern-auto-complete
                       auto-complete
                       python-mode
                       pyvenv
@@ -180,9 +181,17 @@
 ;; use js2 mode in js files
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 
+;; enable tern for autocomplete
+(add-hook 'js2-mode-hook (lambda () (tern-mode t)))
+
+(eval-after-load 'tern
+   '(progn
+      (require 'tern-auto-complete)
+      (tern-ac-setup)))
+
 ;; use ac-js2
-(add-hook 'js2-mode-hook 'ac-js2-setup-auto-complete-mode)
-(setq ac-js2-evaluate-calls t)
+;; (add-hook 'js2-mode-hook 'ac-js2-setup-auto-complete-mode)
+;; (setq ac-js2-evaluate-calls t)
 
 ;; globals for js2-mode
 (setq js2-global-externs (list "window" "define" "require" "module" "exports"))
@@ -215,13 +224,6 @@
 (add-to-list 'interpreter-mode-alist '("python" . python-mode))
 
 (add-hook 'python-mode-hook 'jedi:setup)
-
-;; exclude unwanted words in autocomplete (only use jedi)
-(add-hook 'python-mode-hook
-          (lambda ()
-            (delq 'ac-source-dictionary ac-sources)
-            (delq 'ac-source-abbrev ac-sources)
-            (delq 'ac-source-words-in-same-mode-buffers ac-sources)))
 
 ;; (setq py-shell-name "ipython")
 
