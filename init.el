@@ -34,12 +34,14 @@
                       lua-mode
                       atom-dark-theme
                       base16-theme
+                      spacemacs-theme
+                      spaceline
+                      doom-themes
                       ido-ubiquitous
                       flx-ido
                       ido-vertical-mode
                       jedi
                       web-mode
-                      doom-themes
                       neotree
                       projectile
                       flycheck
@@ -116,6 +118,11 @@
 (flx-ido-mode 1)
 (setq ido-auto-merge-work-directories-length -1)
 
+(require 'spaceline-config)
+(spaceline-emacs-theme)
+;; hide minor modes ( they take too much space )
+(spaceline-toggle-minor-modes-off)
+(setq powerline-default-separator 'wave )
 
 ;; neo tree confog
 (require 'neotree)
