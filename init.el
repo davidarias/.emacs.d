@@ -36,7 +36,7 @@
                       base16-theme
                       ido-ubiquitous
                       flx-ido
-                      ido-grid-mode
+                      ido-vertical-mode
                       jedi
                       web-mode
                       doom-themes
@@ -107,7 +107,7 @@
 
 (ido-mode 1)
 (ido-everywhere 1)
-(ido-grid-mode 1)
+(ido-vertical-mode 1)
 (flx-ido-mode 1)
 (setq ido-auto-merge-work-directories-length -1)
 
