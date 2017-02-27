@@ -44,7 +44,7 @@
                       projectile
                       flycheck
                       dashboard
-                      highlight-indent-guides
+                      highlight-indentation
                       key-seq))
 
 ; install the missing packages
@@ -72,9 +72,9 @@
 
 (require 'better-defaults)
 
-;; indent-guides
-(add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
-(setq highlight-indent-guides-method 'character)
+;; do not ask follow symblinks
+(setq vc-follow-symlinks nil)
+
 
 ;; move between windows using meta + arrows
 (windmove-default-keybindings 'meta)
@@ -116,7 +116,6 @@
 (require 'neotree)
 ;; (global-set-key [f8] 'neotree-toggle)
 (setq neo-theme 'nerd)
-
 
 
 (defun neotree-project-dir ()
@@ -163,6 +162,16 @@
  '(ido-subdir ((t (:foreground "#999")))) ;; Face used by ido for highlighting subdirs in the alternatives.
  '(ido-first-match ((t (:foreground "#fff")))) ;; Face used by ido for highlighting first match.
  '(ido-only-match ((t (:foreground "#fff"))))) ;; Face used by ido for highlighting only match.
+
+
+;; enable highlight-indentation minor mode
+(defun hightlight-ident ()
+  (highlight-indentation-mode)
+  (set-face-background 'highlight-indentation-face "#222830")
+  (set-face-background 'highlight-indentation-current-column-face "#222830"))
+
+(add-hook 'prog-mode-hook 'hightlight-ident)
+
 
 ;; enable flycheck
 (global-flycheck-mode)
