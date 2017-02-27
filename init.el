@@ -55,6 +55,11 @@
 (custom-set-variables
  '(initial-frame-alist (quote ((fullscreen . maximized)))))
 
+;; enable projectile globaly
+;; init projectile before dashboard to show projects list
+(require 'projectile)
+(projectile-global-mode)
+
 (require 'dashboard)
 (dashboard-setup-startup-hook)
 
@@ -96,6 +101,10 @@
 ;; (ido-mode t)
 
 ;; enable ido plugins
+(require 'ido-ubiquitous)
+(ido-ubiquitous-mode 1)
+
+(ido-mode 1)
 (ido-everywhere 1)
 (ido-grid-mode 1)
 (flx-ido-mode 1)
@@ -108,8 +117,6 @@
 (setq neo-theme 'nerd)
 
 
-;; enable projectile globaly
-(projectile-global-mode)
 
 (defun neotree-project-dir ()
   "Open NeoTree using the git root if in project"
@@ -172,6 +179,10 @@
 
 ;; use js2 mode in js files
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+
+;; use ac-js2
+(add-hook 'js2-mode-hook 'ac-js2-setup-auto-complete-mode)
+(setq ac-js2-evaluate-calls t)
 
 ;; globals for js2-mode
 (setq js2-global-externs (list "window" "define" "require" "module" "exports"))
