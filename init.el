@@ -47,8 +47,7 @@
                       flycheck
                       dashboard
                       highlight-indentation
-                      key-seq
-                      persp-mode))
+                      key-seq))
 
 ; install the missing packages
 (dolist (package my-packages)
@@ -71,12 +70,6 @@
 (setq dashboard-items '((recents  . 5)
                         (bookmarks . 5)
                         (projects . 5)))
-
-
-(with-eval-after-load "persp-mode-autoloads"
-  (setq wg-morph-on nil) ;; switch off animation
-  (setq persp-autokill-buffer-on-remove 'kill-weak)
-  (add-hook 'after-init-hook #'(lambda () (persp-mode 1))))
 
 (require 'better-defaults)
 
@@ -129,12 +122,12 @@
 ;; hide minor modes ( they take too much space )
 (spaceline-toggle-minor-modes-off)
 (setq powerline-default-separator 'wave )
+(spaceline-compile)
 
-;; neo tree confog
+;; neo tree config
 (require 'neotree)
 ;; (global-set-key [f8] 'neotree-toggle)
 (setq neo-theme 'nerd)
-
 
 (defun neotree-project-dir ()
   "Open NeoTree using the git root if in project"
