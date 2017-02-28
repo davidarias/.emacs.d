@@ -339,6 +339,5 @@
 ;; (key-seq-define-global "qd" 'dired)
 ;; (key-seq-define text-mode-map "qf" 'flyspell-buffer)
 
-(key-seq-define-global "ff" 'find-file)
 (key-seq-define-global "pf" 'projectile-find-file)
 (key-seq-define-global "pp" 'projectile-switch-project)
