@@ -47,7 +47,8 @@
                       flycheck
                       dashboard
                       highlight-indentation
-                      key-seq))
+                      key-seq
+                      eyebrowse))
 
 ; install the missing packages
 (dolist (package my-packages)
@@ -117,8 +118,12 @@
 (flx-ido-mode 1)
 (setq ido-auto-merge-work-directories-length -1)
 
+(eyebrowse-mode t)
+;; use alternative keybindings
+(eyebrowse-setup-opinionated-keys)
+
 (require 'spaceline-config)
-(spaceline-emacs-theme)
+(spaceline-spacemacs-theme)
 ;; hide minor modes ( they take too much space )
 (spaceline-toggle-minor-modes-off)
 (setq powerline-default-separator 'wave )
@@ -151,7 +156,7 @@
 ;; (color-theme-initialize)
 ;; (color-theme-charcoal-black)
 
-(load-theme 'doom-one t)
+(load-theme 'spacemacs-dark t)
 
 ;; set fringes to background color
 (set-face-attribute 'fringe nil
@@ -168,21 +173,20 @@
                     nil
                     :foreground (face-background 'default))
 
-;; ido theme tweaks
-(custom-set-faces
- '(ido-subdir ((t (:foreground "#999")))) ;; Face used by ido for highlighting subdirs in the alternatives.
- '(ido-first-match ((t (:foreground "#fff")))) ;; Face used by ido for highlighting first match.
- '(ido-only-match ((t (:foreground "#fff"))))) ;; Face used by ido for highlighting only match.
+;; ;; ido theme tweaks
+;; (custom-set-faces
+;;  '(ido-subdir ((t (:foreground "#999")))) ;; Face used by ido for highlighting subdirs in the alternatives.
+;;  '(ido-first-match ((t (:foreground "#fff")))) ;; Face used by ido for highlighting first match.
+;;  '(ido-only-match ((t (:foreground "#fff"))))) ;; Face used by ido for highlighting only match.
 
 
 ;; enable highlight-indentation minor mode
 (defun hightlight-ident ()
   (highlight-indentation-mode)
-  (set-face-background 'highlight-indentation-face "#222830")
-  (set-face-background 'highlight-indentation-current-column-face "#222830"))
+  (set-face-background 'highlight-indentation-face "#333")
+  (set-face-background 'highlight-indentation-current-column-face "#333"))
 
 (add-hook 'prog-mode-hook 'hightlight-ident)
-
 
 ;; enable flycheck
 (global-flycheck-mode)
