@@ -48,7 +48,8 @@
                       dashboard
                       highlight-indentation
                       key-seq
-                      eyebrowse))
+                      eyebrowse
+                      markdown-mode))
 
 ; install the missing packages
 (dolist (package my-packages)
@@ -126,6 +127,7 @@
 (spaceline-spacemacs-theme)
 ;; hide minor modes ( they take too much space )
 (spaceline-toggle-minor-modes-off)
+(spaceline-toggle-buffer-size-off)
 (setq powerline-default-separator 'wave )
 (spaceline-compile)
 
