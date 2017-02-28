@@ -4,4 +4,4 @@
 
 * emacs >= 24
 * emacs-goodies-el
-* autopep8 ( pip install --upgrade autopep8 )
+* tern ( npm install -g tern ) for JavaScript autocomplete
