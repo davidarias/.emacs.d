@@ -185,8 +185,8 @@
 ;; enable highlight-indentation minor mode
 (defun hightlight-ident ()
   (highlight-indentation-mode)
-  (set-face-background 'highlight-indentation-face "#333")
-  (set-face-background 'highlight-indentation-current-column-face "#333"))
+  (set-face-background 'highlight-indentation-face "#2F353C")
+  (set-face-background 'highlight-indentation-current-column-face "#2F353C"))
 
 (add-hook 'prog-mode-hook 'hightlight-ident)
 
