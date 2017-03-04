@@ -75,6 +75,9 @@
 
 (require 'better-defaults)
 
+;; allow use accented chars
+(require 'iso-transl)
+
 ;; do not ask follow symblinks
 (setq vc-follow-symlinks nil)
 
