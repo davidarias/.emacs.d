@@ -68,7 +68,7 @@
 (require 'dashboard)
 (dashboard-setup-startup-hook)
 
-(setq dashboard-banner-logo-title "Use the source, Luke")
+(setq dashboard-banner-logo-title "May the source be with you")
 (setq dashboard-items '((recents  . 5)
                         (bookmarks . 5)
                         (projects . 5)))
@@ -161,7 +161,7 @@
 ;; (color-theme-initialize)
 ;; (color-theme-charcoal-black)
 
-(load-theme 'spacemacs-dark t)
+(load-theme 'base16-default-dark t)
 
 ;; set fringes to background color
 (set-face-attribute 'fringe nil
@@ -259,6 +259,14 @@
 ;; autopep8 on save
 ;; (add-hook 'python-mode-hook 'py-autopep8-enable-on-save)
 
+;; smalltalk mode
+(add-to-list 'load-path "~/.emacs.d/lisp")
+(setq auto-mode-alist
+      (append  '(("\\.st\\'" . smalltalk-mode))
+               auto-mode-alist))
+
+(autoload 'smalltalk-mode "smalltalk-mode.el" "Smalltalk mode" t)
+
 ;; No splash screen
 (setq inhibit-startup-message t)
 
@@ -333,14 +341,17 @@
            (window-configuration-to-register '_)
            (delete-other-windows))))
 
+(global-set-key (kbd "C-p") 'projectile-find-file)
+(global-set-key (kbd "C-S-p") 'projectile-switch-project)
+
 ;; key-seq bindings
 ;; key-seq provides a way to map pairs of sequentially
 ;; but quickly pressed keys to commands
-(key-chord-mode 1)
+;;(key-chord-mode 1)
 
 ;; examples:
 ;; (key-seq-define-global "qd" 'dired)
 ;; (key-seq-define text-mode-map "qf" 'flyspell-buffer)
 
-(key-seq-define-global "pf" 'projectile-find-file)
-(key-seq-define-global "pp" 'projectile-switch-project)
+;; (key-seq-define-global "pf" 'projectile-find-file)
+;; (key-seq-define-global "pp" 'projectile-switch-project)
