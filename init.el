@@ -49,7 +49,8 @@
                       highlight-indentation
                       key-seq
                       eyebrowse
-                      markdown-mode))
+                      markdown-mode
+                      dumb-jump))
 
 ; install the missing packages
 (dolist (package my-packages)
@@ -191,10 +192,14 @@
   (set-face-background 'highlight-indentation-face "#2F353C")
   (set-face-background 'highlight-indentation-current-column-face "#2F353C"))
 
+
 (add-hook 'prog-mode-hook 'hightlight-ident)
 
 ;; enable flycheck
 (global-flycheck-mode)
+
+;; jump to definitions
+(dumb-jump-mode)
 
 ;;; auto complete
 (require 'auto-complete-config)
