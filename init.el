@@ -33,6 +33,7 @@
                       clojure-mode
                       smex
                       lua-mode
+                      hemisu-theme
                       atom-dark-theme
                       base16-theme
                       spacemacs-theme
