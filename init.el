@@ -39,7 +39,6 @@
                       spacemacs-theme
                       spaceline
                       doom-themes
-                      ido-ubiquitous
                       flx-ido
                       ido-vertical-mode
                       jedi
@@ -59,7 +58,7 @@
   (unless (package-installed-p package)
     (package-install package)))
 
-;; init maximized
+;; maximized
 (custom-set-variables
  '(initial-frame-alist (quote ((fullscreen . maximized)))))
 
@@ -110,10 +109,6 @@
 ;; (require 'ido)
 ;; (ido-mode t)
 
-;; enable ido plugins
-(require 'ido-ubiquitous)
-(ido-ubiquitous-mode 1)
-
 (ido-mode 1)
 (ido-everywhere 1)
 
@@ -130,9 +125,9 @@
 (eyebrowse-setup-opinionated-keys)
 
 (require 'spaceline-config)
-(spaceline-spacemacs-theme)
+(spaceline-emacs-theme)
 ;; hide minor modes ( they take too much space )
-(spaceline-toggle-minor-modes-off)
+;; (spaceline-toggle-minor-modes-off)
 (spaceline-toggle-buffer-size-off)
 (setq powerline-default-separator 'wave )
 (spaceline-compile)
@@ -165,9 +160,9 @@
 ;; (color-theme-initialize)
 ;; (color-theme-charcoal-black)
 
-(set-frame-font "Hermit 10" nil t)
+;; (set-frame-font "Hermit 10" nil t)
 
-(load-theme 'spacemacs-dark t)
+(load-theme 'doom-one t)
 
 ;; set fringes to background color
 (set-face-attribute 'fringe nil
@@ -225,6 +220,7 @@
 
 ;; enable tern for autocomplete
 (add-hook 'js2-mode-hook (lambda () (tern-mode t)))
+(add-hook 'rjsx-mode-hook (lambda () (tern-mode t)))
 
 (eval-after-load 'tern
    '(progn
@@ -255,7 +251,7 @@
 (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
 
-(add-to-list 'auto-mode-alist '("\\.jsx\\'" . web-mode))
+;; (add-to-list 'auto-mode-alist '("\\.jsx\\'" . web-mode))
 
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 
