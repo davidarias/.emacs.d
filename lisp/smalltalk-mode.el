@@ -8,7 +8,7 @@
 ;;;
 ;;; GNU Smalltalk is free software; you can redistribute it and/or modify it
 ;;; under the terms of the GNU General Public License as published by the Free
-;;; Software Foundation; either version 2, or (at your option) any later 
+;;; Software Foundation; either version 2, or (at your option) any later
 ;;; version.
 ;;;
 ;;; GNU Smalltalk is distributed in the hope that it will be useful, but
@@ -50,7 +50,7 @@
 ;; however, (like smalltalk-begin-of-defun) so there punctuation.
 ;; Works for now...
 
-(defvar smalltalk-mode-syntax-table 
+(defvar smalltalk-mode-syntax-table
   (let ((table (make-syntax-table)))
     ;; Make sure A-z0-9 are set to "w   " for completeness
     (let ((c 0))
@@ -84,8 +84,8 @@
     (modify-syntax-entry ?|  ".   " table) ; Temporaries
     (modify-syntax-entry ?^  ".   " table) ; Return
     ;; Just to make sure these are not set to "w   "
-    (modify-syntax-entry ?<  ".   " table) 
-    (modify-syntax-entry ?>  ".   " table) 
+    (modify-syntax-entry ?<  ".   " table)
+    (modify-syntax-entry ?>  ".   " table)
     (modify-syntax-entry ?+  ".   " table) ; math
     (modify-syntax-entry ?-  ".   " table) ; math
     (modify-syntax-entry ?*  ".   " table) ; math
@@ -108,7 +108,7 @@
 
 ;; ---[ Keymap ]------------------------------------------------------
 
-(defvar smalltalk-template-map 
+(defvar smalltalk-template-map
   (let ((keymap (make-sparse-keymap)))
     (define-key keymap "p" 'smalltalk-private-template)
     (define-key keymap "c" 'smalltalk-class-template)
@@ -141,8 +141,8 @@
     (define-key keymap "\C-cp"     'smalltalk-print)
     (define-key keymap "\C-cq"     'smalltalk-quit)
     (define-key keymap "\C-cs"     'smalltalk-snapshot)
-    
-    keymap)  
+
+    keymap)
   "Keymap for Smalltalk mode")
 
 (defconst smalltalk-binsel "\\([-+*/~,<>=&?]\\{1,2\\}\\|:=\\|||\\)"
@@ -155,22 +155,22 @@
    (cons smalltalk-binsel 'font-lock-function-name-face)
 ;   '("\\^" . font-lock-keyword-face)
    '("\\$." . font-lock-string-face) ;; Chars
-   '("\\<[A-Z]\\sw*\\>" . font-lock-type-face))  
+   '("\\<[A-Z]\\sw*\\>" . font-lock-type-face))
   "Basic Smalltalk keywords font-locking")
 
 (defconst smalltalk-font-lock-keywords-1
-  smalltalk-font-lock-keywords	   
+  smalltalk-font-lock-keywords
   "Level 1 Smalltalk font-locking keywords")
 
 (defconst smalltalk-font-lock-keywords-2
   (append smalltalk-font-lock-keywords-1
-	  (list 
-	   '("\\<\\(true\\|false\\|nil\\|self\\|super\\)\\>" 
+	  (list
+	   '("\\<\\(true\\|false\\|nil\\|self\\|super\\)\\>"
 	     . font-lock-builtin-face)
 	   '(":[a-z][A-z0-9_]*" . font-lock-variable-name-face)
 	   '(" |" . font-lock-type-face)
 	   '("<.*>" . font-lock-builtin-face)))
-  
+
   "Level 2 Smalltalk font-locking keywords")
 
 (defvar smalltalk-last-category ""
@@ -192,7 +192,7 @@ Commands:
   (use-local-map smalltalk-mode-map)
   (set-syntax-table smalltalk-mode-syntax-table)
   (setq local-abbrev-table smalltalk-mode-abbrev-table)
-  
+
   ;; Buffer locals
 
   (set (make-local-variable 'paragraph-start)
@@ -200,28 +200,35 @@ Commands:
   (set (make-local-variable 'paragraph-separate)
        paragraph-start)
   (set (make-local-variable 'paragraph-ignore-fill-prefix) t)
-  (set (make-local-variable 'indent-line-function)
-       'smalltalk-indent-line)
+
+  ;;avoid indent for gnu smalltalk
+  ;;(set (make-local-variable 'indent-line-function)
+  ;;     'smalltalk-indent-line)
+
   (set (make-local-variable 'require-final-newline) t)
   (set (make-local-variable 'comment-start) "\"")
   (set (make-local-variable 'comment-end) "\"")
   (set (make-local-variable 'comment-column) 32)
   (set (make-local-variable 'comment-start-skip) "\" *")
   ;; Doesn't seem useful...?
-  (set (make-local-variable 'comment-indent-function)
-       'smalltalk-comment-indent)
+
+
+  ;;(set (make-local-variable 'comment-indent-function)
+  ;;     'smalltalk-comment-indent)
+
+
   ;; For interactive f-b sexp
   (set (make-local-variable 'parse-sexp-ignore-comments) t)
 
   ;; font-locking
-  (set (make-local-variable 'font-lock-defaults)  
+  (set (make-local-variable 'font-lock-defaults)
        '((smalltalk-font-lock-keywords
 	  smalltalk-font-lock-keywords-1
 	  smalltalk-font-lock-keywords-2)
 	 nil nil nil nil))
 
   ;; tags
-  (set (make-local-variable 'find-tag-default-function) 
+  (set (make-local-variable 'find-tag-default-function)
 	   'smalltalk-find-message)
   ;; Run hooks, must be last
   (run-hooks 'smalltalk-mode-hook))
@@ -283,7 +290,7 @@ Commands:
 			   (forward-sexp 1)
 			   (if (and (< (point) here)
 				    (= (char-before) ?\]))
-			       (progn 
+			       (progn
 				 (skip-syntax-forward " \t")
 				 (setq prev (point)))))
 		       (error t))
@@ -414,7 +421,7 @@ expressions."
   (save-excursion
     (backward-char 1)
     (smalltalk-indent-line)))
- 
+
 (defun smalltalk-maybe-insert-spacing-line (n)
   (if (not (save-excursion
 	     (previous-line n)
@@ -488,7 +495,7 @@ expressions."
 			  (read-string "Category: "
 				       (smalltalk-last-category-name)))))
   (smalltalk-class-template-fn class-name selector-name category-name)))
-   
+
 
 (defun smalltalk-private-template (with-class)
   (interactive "p")
@@ -510,7 +517,7 @@ expressions."
 	   comment-column))))	; except leave at least one space.
 
 (defun smalltalk-indent-line ()
-  (smalltalk-indent-to-column 
+  (smalltalk-indent-to-column
    (save-excursion
      (beginning-of-line)
      (skip-chars-forward " \t")
@@ -519,7 +526,7 @@ expressions."
 	      (not (smalltalk-at-begin-of-defun)))
 	 (smalltalk-indent-for-colon)
        (smalltalk-calculate-indent)))))
- 
+
 (defun smalltalk-toplevel-indent (for-scope)
   (let (orig)
     (condition-case nil
@@ -534,7 +541,7 @@ expressions."
 		(smalltalk-current-column)
 	      (+ smalltalk-indent-amount (smalltalk-current-column)))))
       (error 0))))
-     
+
 (defun smalltalk-statement-indent ()
   (let (needs-indent indent-amount done c state orig start-of-line close
 		     (parse-sexp-ignore-comments nil))
@@ -548,7 +555,7 @@ expressions."
 	(cond ((nth 4 state) ;in a comment
 	       (save-excursion
 		 (smalltalk-backward-comment)
-		 (setq indent-amount 
+		 (setq indent-amount
 		       (+ (current-column) (if (= (current-column) 0) 0 1)))))
 	      ((equal (nth 3 state) ?')	;in a string
 	       (setq indent-amount 0))
@@ -616,7 +623,7 @@ expressions."
 	       (while (and (not (bobp)) (looking-back "[ \t\na-zA-Z]"))
 		 (skip-chars-backward " \t\n")
 		 (skip-chars-backward "a-zA-Z"))
-	       (if (= (preceding-char) ?|) 
+	       (if (= (preceding-char) ?|)
 		   (progn
 		     (backward-char 1)
 		     (skip-chars-backward " \t\n")))
@@ -663,7 +670,7 @@ or non-white space, non-comment character"
   (while (progn (skip-chars-backward smalltalk-whitespace)
 		(= (preceding-char) ?\"))
     (search-backward "\"" nil t 2)))
-	
+
 (defun smalltalk-current-column ()
   "Returns the current column of the given line, regardless of narrowed buffer."
   (save-restriction
@@ -753,7 +760,7 @@ following on the same line."
 		      (forward-char 1))
 		     (t
 		      (setq done t)))
-	       
+
 	       (while (not done)
 		 (skip-chars-forward " \t")
 		 (setq c (following-char))
@@ -778,7 +785,7 @@ following on the same line."
 
 (defun smalltalk-at-begin-of-scope ()
   "Returns T if at the beginning of a class or namespace definition, otherwise nil"
-  (save-excursion 
+  (save-excursion
     (end-of-line)
     (if (smalltalk-in-bang-syntax)
 	(let ((parse-sexp-ignore-comments t))
@@ -1026,7 +1033,7 @@ Whitespace is defined as spaces, tabs, and comments."
 	(progn (setq curr-hit-point new-hit-point)
 	       (setq curr-hit new-hit)))
     (cons curr-hit curr-hit-point)))
-  
+
 (defun smalltalk-current-scope-point ()
   (defun smalltalk-update-hit-point (current search)
     (save-excursion
@@ -1036,11 +1043,11 @@ Whitespace is defined as spaces, tabs, and comments."
 	    new-hit-point
 	  current))))
   (let ((curr-hit-point (smalltalk-current-class-point)))
-    (setq curr-hit-point 
-	  (smalltalk-update-hit-point curr-hit-point 
+    (setq curr-hit-point
+	  (smalltalk-update-hit-point curr-hit-point
 				      #'(lambda ()(search-backward-regexp "^[ \t]*Eval[ \t]+\\[" nil t))))
-    (setq curr-hit-point 
-	  (smalltalk-update-hit-point curr-hit-point 
+    (setq curr-hit-point
+	  (smalltalk-update-hit-point curr-hit-point
 				      #'(lambda ()(search-backward-regexp "^[ \t]*Namespace[ \t]+current:[ \t]+[A-Za-z0-9_.]+[ \t]+\\[" nil t))))
     curr-hit-point))
 
@@ -1090,14 +1097,14 @@ Whitespace is defined as spaces, tabs, and comments."
     (cond
      ((smalltalk-looking-at-unary-send)
       (if (not (smalltalk-has-sender))
-	       (progn 
-		 (smalltalk-safe-forward-sexp) 
+	       (progn
+		 (smalltalk-safe-forward-sexp)
 		 (smalltalk-safe-forward-sexp)
 		 (smalltalk-find-message))
 	       (buffer-substring-no-properties (point) (progn (smalltalk-safe-forward-sexp)(point)))))
       ((smalltalk-looking-at-keyword-send)
        (concat (smalltalk-find-beginning-of-keyword-send) (smalltalk-find-end-of-keyword-send))))))
-	 
+
 (defun smalltalk-safe-backward-sexp ()
   (let (prev-point)
     (condition-case nil
@@ -1156,7 +1163,7 @@ Whitespace is defined as spaces, tabs, and comments."
 	  ""
 	(progn
 	  (smalltalk-goto-previous-keyword)
-	  (concat (smalltalk-find-beginning-of-keyword-send) 
+	  (concat (smalltalk-find-beginning-of-keyword-send)
 		  (buffer-substring-no-properties (point) (progn (smalltalk-safe-forward-sexp)(+ (point) 1)))))))))
 
 (defun smalltalk-goto-previous-keyword ()
@@ -1173,7 +1180,7 @@ Whitespace is defined as spaces, tabs, and comments."
       nil
     (if (= (point) (save-excursion (smalltalk-safe-backward-sexp) (point)))
 	nil
-      (progn 
+      (progn
 	(smalltalk-safe-backward-sexp)
 	(if (smalltalk-looking-at-keyword-send)
 	    (point)
@@ -1182,7 +1189,7 @@ Whitespace is defined as spaces, tabs, and comments."
 (defun smalltalk-next-keyword-1 ()
   (smalltalk-forward-whitespace)
   (if (looking-at "[])};.]")
-      nil 
+      nil
     (if (= (point) (save-excursion (smalltalk-safe-forward-sexp) (point)))
 	nil
       (progn
@@ -1199,4 +1206,3 @@ Whitespace is defined as spaces, tabs, and comments."
   (or (save-excursion (smalltalk-next-keyword-1)) (point)))
 
 (provide 'smalltalk-mode)
-
