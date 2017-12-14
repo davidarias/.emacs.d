@@ -159,12 +159,15 @@
 
 (global-set-key [f8] 'neotree-project-dir)
 
+
 ;; set color themes ( requires emacs-goodies package)
 ;; (require 'color-theme)
 ;; (color-theme-initialize)
 ;; (color-theme-charcoal-black)
 
-(load-theme 'base16-default-dark t)
+(set-frame-font "Hermit 10" nil t)
+
+(load-theme 'spacemacs-dark t)
 
 ;; set fringes to background color
 (set-face-attribute 'fringe nil
