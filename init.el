@@ -23,6 +23,7 @@
 (defvar my-packages '(better-defaults
                       autopair
                       js2-mode
+                      rjsx-mode
                       tern
                       tern-auto-complete
                       auto-complete
@@ -213,7 +214,10 @@
 
 
 ;; use js2 mode in js files
-(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+;; (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+
+;; use rjsx mode (js2-mode plus react )
+(add-to-list 'auto-mode-alist '("\\.js\\'" . rjsx-mode))
 
 ;; enable tern for autocomplete
 (add-hook 'js2-mode-hook (lambda () (tern-mode t)))
