@@ -184,7 +184,7 @@
                     nil
                     :foreground (face-background 'default))
 
-;; ;; ido theme tweaks
+;; ido theme tweaks
 ;; (custom-set-faces
 ;;  '(ido-subdir ((t (:foreground "#999")))) ;; Face used by ido for highlighting subdirs in the alternatives.
 ;;  '(ido-first-match ((t (:foreground "#fff")))) ;; Face used by ido for highlighting first match.
