@@ -54,7 +54,8 @@
                       eyebrowse
                       markdown-mode
                       dumb-jump
-                      use-package))
+                      use-package
+                      highlight-symbol))
 
 ; install the missing packages
 (dolist (package my-packages)
@@ -164,6 +165,12 @@
 (spaceline-compile)
 
 
+(require 'highlight-symbol)
+(global-set-key (kbd "C-ñ") 'highlight-symbol-at-point)
+(global-set-key (kbd "C-.") 'highlight-symbol-next)
+(global-set-key (kbd "C-,") 'highlight-symbol-prev)
+(global-set-key (kbd "C-;") 'highlight-symbol-query-replace)
+
 ;; for neo tree icons
 ;; run after M-x all-the-icons-install-fonts
 (require 'all-the-icons)
@@ -203,7 +210,7 @@
 
 ;; (set-frame-font "Hermit 10" nil t)
 
-(load-theme 'doom-one t)
+(load-theme 'doom-molokai t)
 
 ;; set fringes to background color
 (set-face-attribute 'fringe nil
