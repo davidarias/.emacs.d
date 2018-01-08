@@ -51,7 +51,8 @@
                       key-seq
                       eyebrowse
                       markdown-mode
-                      dumb-jump))
+                      dumb-jump
+                      use-package))
 
 ; install the missing packages
 (dolist (package my-packages)
@@ -71,13 +72,33 @@
 (require 'projectile)
 (projectile-global-mode)
 
-(require 'dashboard)
-(dashboard-setup-startup-hook)
 
-(setq dashboard-banner-logo-title "May the source be with you")
-(setq dashboard-items '((recents  . 5)
-                        (bookmarks . 5)
-                        (projects . 5)))
+;; workaround bug
+;; https://github.com/rakanalh/emacs-dashboard/issues/45
+(require 'use-package)
+
+(use-package dashboard
+  :bind (
+	 :map dashboard-mode-map
+	 ("<down-mouse-1>" . nil)
+	 ("<mouse-1>" . widget-button-click)
+	 ("<mouse-2>" . widget-button-click))
+  :config
+  (setq dashboard-banner-logo-title "May the source be with you")
+  (setq dashboard-items '((recents  . 10)
+                          (bookmarks . 5)
+                          (projects . 10)))
+  :init
+  (dashboard-setup-startup-hook))
+
+;; (require 'dashboard)
+;; (dashboard-setup-startup-hook)
+
+;; (setq dashboard-banner-logo-title "May the source be with you")
+;; (setq dashboard-items '((recents  . 5)
+;;                         (bookmarks . 5)
+;;                         (projects . 5)))
+
 
 (require 'better-defaults)
 
