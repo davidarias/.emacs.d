@@ -288,6 +288,12 @@
 
 (add-hook 'python-mode-hook 'jedi:setup)
 
+;; use python mode for Scons build files
+ (setq auto-mode-alist
+      (cons '("SConstruct" . python-mode) auto-mode-alist))
+ (setq auto-mode-alist
+      (cons '("SConscript" . python-mode) auto-mode-alist))
+
 ;; (setq py-shell-name "ipython")
 
 ;; autopep8 on save
