@@ -39,11 +39,13 @@
                       spacemacs-theme
                       spaceline
                       doom-themes
+                      hlinum
                       flx-ido
                       ido-vertical-mode
                       jedi
                       web-mode
                       neotree
+                      all-the-icons
                       projectile
                       flycheck
                       dashboard
@@ -134,6 +136,10 @@
 ;; (require 'ido)
 ;; (ido-mode t)
 
+;; highlight current line num
+(require 'hlinum)
+(hlinum-activate)
+
 (ido-mode 1)
 (ido-everywhere 1)
 
@@ -157,10 +163,20 @@
 (setq powerline-default-separator 'wave )
 (spaceline-compile)
 
+
+;; for neo tree icons
+;; run after M-x all-the-icons-install-fonts
+(require 'all-the-icons)
+
 ;; neo tree config
 (require 'neotree)
 ;; (global-set-key [f8] 'neotree-toggle)
-(setq neo-theme 'nerd)
+;; (setq neo-theme 'nerd)
+;; use doom theme for neotree
+(doom-themes-neotree-config)
+
+;; allow resize neotree window
+(setq neo-window-fixed-size nil)
 
 (defun neotree-project-dir ()
   "Open NeoTree using the git root if in project"
