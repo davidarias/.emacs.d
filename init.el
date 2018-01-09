@@ -39,7 +39,7 @@
                       spacemacs-theme
                       spaceline
                       doom-themes
-                      hlinum
+                      nlinum
                       flx-ido
                       ido-vertical-mode
                       jedi
@@ -105,6 +105,11 @@
 
 (require 'better-defaults)
 
+;; scroll one line at a time
+(setq mouse-wheel-scroll-amount '(1))
+;; don't accelerate scrolling
+(setq mouse-wheel-progressive-speed nil)
+
 ;; allow use accented chars
 (require 'iso-transl)
 
@@ -131,15 +136,17 @@
 (autopair-global-mode) ;; to enable in all buffers
 
 ;; show line numbers
-(global-linum-mode t)
-(add-hook 'term-mode-hook (lambda () (linum-mode 0)))
+;; (global-linum-mode t)
+;; (add-hook 'term-mode-hook (lambda () (linum-mode 0)))
+
+
+;; better performance linum
+(require 'nlinum)
+(add-hook 'prog-mode-hook 'nlinum-mode)
+
 ;; activated in better defaults
 ;; (require 'ido)
 ;; (ido-mode t)
-
-;; highlight current line num
-(require 'hlinum)
-(hlinum-activate)
 
 (ido-mode 1)
 (ido-everywhere 1)
