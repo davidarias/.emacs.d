@@ -110,6 +110,9 @@
 ;; don't accelerate scrolling
 (setq mouse-wheel-progressive-speed nil)
 
+ ;; keyboard scroll one line at a time
+(setq scroll-step 1)
+
 ;; allow use accented chars
 (require 'iso-transl)
 
