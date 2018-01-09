@@ -7,5 +7,7 @@ smex-items
 backups/
 .python-environments/
 projectile-bookmarks.eld
+projectile.*
 bookmarks
 recentf
+session.*
