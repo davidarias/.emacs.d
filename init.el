@@ -106,7 +106,7 @@
 (require 'better-defaults)
 
 ;; scroll one line at a time
-(setq mouse-wheel-scroll-amount '(1))
+(setq mouse-wheel-scroll-amount '(4))
 ;; don't accelerate scrolling
 (setq mouse-wheel-progressive-speed nil)
 
