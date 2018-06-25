@@ -49,7 +49,7 @@
                       projectile
                       flycheck
                       dashboard
-                      highlight-indentation
+                      highlight-indent-guides
                       key-seq
                       eyebrowse
                       markdown-mode
@@ -263,15 +263,8 @@
 ;;  '(ido-first-match ((t (:foreground "#fff")))) ;; Face used by ido for highlighting first match.
 ;;  '(ido-only-match ((t (:foreground "#fff"))))) ;; Face used by ido for highlighting only match.
 
-
-;; enable highlight-indentation minor mode
-(defun hightlight-ident ()
-  (highlight-indentation-mode)
-  (set-face-background 'highlight-indentation-face "#2F353C")
-  (set-face-background 'highlight-indentation-current-column-face "#2F353C"))
-
-
-(add-hook 'prog-mode-hook 'hightlight-ident)
+(add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
+(setq highlight-indent-guides-method 'column)
 
 ;; enable flycheck
 (global-flycheck-mode)
