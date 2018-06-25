@@ -105,6 +105,26 @@
 
 (require 'better-defaults)
 
+;; org mode babel src blocks behaviour
+(setq org-src-fontify-natively t)
+(setq org-src-tab-acts-natively t)
+(setq org-support-shift-select t)
+
+;; enable support for languages in org-babel
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((C . t)
+   (emacs-lisp . t)
+   (js . t)
+   (python . t)
+   (sh . t )))
+
+;; flycheck babel src code blocks
+(defadvice org-edit-src-code (around set-buffer-file-name activate compile)
+  (let ((file-name (buffer-file-name))) ;; (1)
+    ad-do-it                            ;; (2)
+    (setq buffer-file-name file-name))) ;; (3)
+
 ;; scroll one line at a time
 (setq mouse-wheel-scroll-amount '(4))
 ;; don't accelerate scrolling
