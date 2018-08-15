@@ -291,7 +291,9 @@
 
 ;; enable tern for autocomplete
 (add-hook 'js2-mode-hook (lambda () (tern-mode t)))
-(add-hook 'rjsx-mode-hook (lambda () (tern-mode t)))
+(add-hook 'rjsx-mode-hook (lambda () (progn
+                                       (tern-mode t)
+                                       (auto-complete-mode))))
 
 (eval-after-load 'tern
    '(progn
